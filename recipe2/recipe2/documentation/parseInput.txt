@@ -1,0 +1,35 @@
+///for processing command line arguments to my project: I have some thoughts
+///1. Roll my own parser
+///   Criticism: I don't have enough time to read and study this subject too much. I'd prefer to
+///   read someone else's docs and learn while I go. This points to a library solution. Also,
+///   I'd rather move onto implementing the unique parts of my program.
+
+///From these links:
+///   http://stackoverflow.com/questions/865668/how-to-parse-command-line-arguments-in-c
+///   https://www.reddit.com/r/cpp/comments/3jwkgt/libraries_for_modern_c/
+
+///I've learned of the existence of these options for processing command line arguments:
+///   Docopt has a C++ port: http://docopt.org/
+///   https://github.com/jarro2783/cxxopts
+///   http://optionparser.sourceforge.net/index.html
+///   GNU Getopt(). This isn't cross platform.
+///   boost::program_options
+
+///   Docopt seems nice but it seems to be out of the scope of the course. I'm more open to
+///   a solution that is closer to c++
+
+///   That axiom leaves 3 remaining: boost, cxxopts, and optionparser.
+
+///   I have no idea how optionparser doesn't utilizes any standard library features for C or C++. So I'm playing
+///   The ignorance card and backing away from that one. (Plus, the docs seem a little sparse)
+///
+///   Now choice is between boost and cxxopts:
+///   After reading about cxxopts vs boost::program_options here:
+///   https://www.reddit.com/r/cpp/comments/3jwkgt/libraries_for_modern_c/
+///   (expand all comments and search that page for instances of: cxx)
+///   I think that cxxopts is more within the scope of the assignment and course than boost
+///   It's header only, and I don't have to spend as much time figuring out how to install and bundle
+///   across platform.
+///   Blog post where cxxopts was created: https://thenewcpp.wordpress.com/2014/10/13/lightweight-c-options-parser/
+///   It's requirements are a C++11 compiler.
+
