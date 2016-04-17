@@ -18,9 +18,15 @@
     <ClCompile Include="recipe2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cxxoptsExample.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="documentation\parseInput.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="listof_things_I_Learned.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

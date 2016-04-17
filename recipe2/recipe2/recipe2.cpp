@@ -1,26 +1,5 @@
-/*
+//My Copyright Notice: Jace Thompson
 
-Copyright (c) 2014 Jarryd Beck
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-*/
 
 #include <iostream>
 
@@ -30,103 +9,56 @@ THE SOFTWARE.
 
 int main(int argc, char* argv[])
 {
+	//this try block catches errors related to the library I'm using for command line parameters: cxxopts
 	try
 	{
-		cxxopts::Options options(argv[0], " - example command line options");
+		//declare an object from class cxxopts::Options. This is the object that has all the functionality
+		//for processing user input from command line parameters.
+		cxxopts::Options myCommandlineOptions(argv[0], 
+		" [FILE...]");//example usage string
+		//In the above, "argv[0]" is the argument vector of the system. According to Deitel, this C feature
+		//isn't guaranteed portable to every C/C++ implementation, but it covers the
+		//usual suspects mainstream users are on. Certain operating systems (OpenVMS) have their own
+		//way of getting arguments from the commandline.
+		//
+		//Also, the cxxopts::Options object takes the argv[0] during construction and is able to parse
+		//what was passed in that vector.
 
-		bool apple = false;
+		//Below, the options I want for my project are declared. This function makes use of 
+		//overloaded operator() and maybe even operator*. I have no idea how ()() is interpretted by C
+		//I assume multiplication. <TO BE READ UP ON DURING ANOTHER DAY>
+		myCommandlineOptions.add_options()
+			("s,shoppingList", "generates a shopping list from [FILE...]")
+			("h,help", "display this help text and exit");
 
-		options.add_options()
-			("a,apple", "an apple", cxxopts::value<bool>(apple))
-			("b,bob", "Bob")
-			("f,file", "File", cxxopts::value<std::vector<std::string>>(), "FILE")
-			("i,input", "Input", cxxopts::value<std::string>())
-			("o,output", "Output file", cxxopts::value<std::string>()
-				->default_value("a.out")->implicit_value("b.def"), "BIN")
-			("positional",
-				"Positional arguments: these are the arguments that are entered "
-				"without an option", cxxopts::value<std::vector<std::string>>())
-			("long-description",
-				"thisisareallylongwordthattakesupthewholelineandcannotbebrokenataspace")
-			("help", "Print help")
-			("int", "An integer", cxxopts::value<int>(), "N")
-			("option_that_is_too_long_for_the_help", "A very long option")
-#ifdef CXXOPTS_USE_UNICODE
-			("unicode", u8"A help option with non-ascii: à. Here the size of the"
-				" string should be correct")
-#endif
-			;
-
-		options.add_options("Group")
-			("c,compile", "compile")
-			("d,drop", "drop", cxxopts::value<std::vector<std::string>>());
-
-		options.parse_positional({ "input", "output", "positional" });
-
-		options.parse(argc, argv);
-
-		if (options.count("help"))
+		//after defining the options, tell the cxxopts to parse command line parameters
+		myCommandlineOptions.parse(argc, argv);
+		
+		//if there was only 1 argument given (the program's name)
+		//details here: 
+		//http://stackoverflow.com/questions/17007557/c-how-to-check-if-an-arguement-was-given-or-not
+		if (argc == 1)
 		{
-			std::cout << options.help({ "", "Group" }) << std::endl;
-			exit(0);
+			//display a tiny help message
+			std::cout <<
+			"Usage: recipe2 [OPTION...] [FILE...]\n" <<
+			"Try 'recipe2 --help' for more information.\n";
 		}
-
-		if (apple)
+		//count( option ) returns the number of the times the argument was found
+		//so logically, if ( an argument is present )
+		if (myCommandlineOptions.count("help"))
 		{
-			std::cout << "Saw option ‘a’ " << options.count("a") << " times " <<
-				std::endl;
+			std::cout << myCommandlineOptions.help();
 		}
-
-		if (options.count("b"))
-		{
-			std::cout << "Saw option ‘b’" << std::endl;
-		}
-
-		if (options.count("f"))
-		{
-			auto& ff = options["f"].as<std::vector<std::string>>();
-			std::cout << "Files" << std::endl;
-			for (const auto& f : ff)
-			{
-				std::cout << f << std::endl;
-			}
-		}
-
-		if (options.count("input"))
-		{
-			std::cout << "Input = " << options["input"].as<std::string>()
-				<< std::endl;
-		}
-
-		if (options.count("output"))
-		{
-			std::cout << "Output = " << options["output"].as<std::string>()
-				<< std::endl;
-		}
-
-		if (options.count("positional"))
-		{
-			std::cout << "Positional = {";
-			auto& v = options["positional"].as<std::vector<std::string>>();
-			for (const auto& s : v) {
-				std::cout << s << ", ";
-			}
-			std::cout << "}" << std::endl;
-		}
-
-		if (options.count("int"))
-		{
-			std::cout << "int = " << options["int"].as<int>() << std::endl;
-		}
-
-		std::cout << "Arguments remain = " << argc << std::endl;
+		if (myCommandlineOptions.)
 
 	}
+	//catches errors relating to command line parameters
 	catch (const cxxopts::OptionException& e)
 	{
 		std::cout << "error parsing options: " << e.what() << std::endl;
 		exit(1);
 	}
-
+	
 	return 0;
-}
+}//end of main
