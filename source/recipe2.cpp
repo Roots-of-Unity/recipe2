@@ -2,7 +2,7 @@
 
 
 #include <iostream>
-#include "store.h" //that's store: as in the place where you buy things
+#include "./myClasses/store.h" //that's store: as in the place where you buy things
 
 //let's me parse input fed from the commandline easily. see rational for use in
 //"./documentation/parseInput.txt"
