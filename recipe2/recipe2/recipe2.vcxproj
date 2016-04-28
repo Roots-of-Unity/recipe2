@@ -118,12 +118,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cxxoptsExample.cpp" />
+    <ClCompile Include="documentation\cxxoptsExample.cpp" />
+    <ClCompile Include="myClasses\store.cpp" />
     <ClCompile Include="recipe2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="documentation\listof_things_I_Learned.txt" />
     <Text Include="documentation\parseInput.txt" />
-    <Text Include="listof_things_I_Learned.txt" />
+    <Text Include="documentation\TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myClasses\store.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

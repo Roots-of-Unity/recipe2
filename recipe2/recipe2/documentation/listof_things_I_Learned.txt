@@ -17,3 +17,14 @@
    like an eyeball or something like that.
  * a small phone application with 3 big buttons: does this item come before x in store y?
    <YES> <NO> <IT'S NEARBY ITEM X>
+ * As it turns out: enumerating files in a directory is a task specific to the OS.
+ * Utilized dynamic memory to make a vector of pointers. This way I avoided having to give an unknown amount of
+   variables unique names.
+ * I tried ICU. http://site.icu-project.org/
+   I just needed to iterate through a a UTF-8 encoded file. I found out quickly 
+   that maintaining code that compiles across platforms is difficult, and increases the size
+   of my project (I could: use cmake, and have a large build time,
+   or tell my user to install a dependency, 
+   or link to and include ICU binaries for each platform in my package). 
+   I switched to header-only utfcpp https://github.com/nemtrif/utfcpp, because it 
+   is the least complex component that meets my requirements. 

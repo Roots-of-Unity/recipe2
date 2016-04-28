@@ -18,16 +18,27 @@
     <ClCompile Include="recipe2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cxxoptsExample.cpp">
+    <ClCompile Include="documentation\cxxoptsExample.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="myClasses\store.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="documentation\listof_things_I_Learned.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
     <Text Include="documentation\parseInput.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="listof_things_I_Learned.txt">
+    <Text Include="documentation\TODO.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myClasses\store.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
