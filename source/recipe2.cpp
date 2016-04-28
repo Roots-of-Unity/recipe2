@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
 			{
 				std::cout << s << ", ";
 			}
-			std::cout << "}" << std::endl;
+			std::cout << "}" << "\n" << std::endl;
 
 			//store the fileVector for use later use in the program
 			fileVector = myCommandlineOptions["file"].as<std::vector<std::string>>();
