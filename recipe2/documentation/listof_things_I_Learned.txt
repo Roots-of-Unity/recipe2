@@ -1,0 +1,30 @@
+ * overloading the () operator can make for some neatly formatted function calls.
+ * argc and argv aren't guaranteed to work on every system.
+ * you have have a function take a vector as a parameter to allow for any size input to that function
+ * looked over grep's and cp's source to gain insight into how to build a commandline program
+ * Quesetion brought up:
+     Should I develop my store schemas based off of raw recipes or shopping lists?
+     Should I develop an additional program designed for asking the user for help sorting and conceptualizing?
+ * gourmet recipe manager maintains an ingredients and pantry sqlite database
+ * gourmet recipe manager is able to output a list with user tags as to sections of the grocery store
+ * another program might be able to ask the user does x come before y and be able to solve this relation
+ * then a final optimal route for each store would be generated.
+ * this essentially solves the store and pathing information for the -store option.
+ * I need to figure out how to store each stores schema abou route info.
+ * Is this for store x?
+ * save to store x?
+ * this way the machine can leech off of my experience without needing an advanced input device of it's own
+   like an eyeball or something like that.
+ * a small phone application with 3 big buttons: does this item come before x in store y?
+   <YES> <NO> <IT'S NEARBY ITEM X>
+ * As it turns out: enumerating files in a directory is a task specific to the OS.
+ * Utilized dynamic memory to make a vector of pointers. This way I avoided having to give an unknown amount of
+   variables unique names.
+ * I tried ICU. http://site.icu-project.org/
+   I just needed to iterate through a a UTF-8 encoded file. I found out quickly 
+   that maintaining code that compiles across platforms is difficult, and increases the size
+   of my project (I could: use cmake, and have a large build time,
+   or tell my user to install a dependency, 
+   or link to and include ICU binaries for each platform in my package). 
+   I switched to header-only utfcpp https://github.com/nemtrif/utfcpp, because it 
+   is the least complex component that meets my requirements. 
