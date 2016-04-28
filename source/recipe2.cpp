@@ -97,7 +97,16 @@ int main(int argc, char* argv[])
 	//catches errors relating to command line parameters
 	catch (const cxxopts::OptionException& e)
 	{
-		std::cout << "error parsing options: " << e.what() << std::endl;
+		//cxxopt's default error string below. I don't like it
+		//Because it requires ICU (a unicode library) to output
+		//Unicode characters which is a task delegated to OS's
+		//std::cout << "error parsing options: " << e.what() << std::endl;
+		//So I'm replacing ^ with my own help string
+		std::cout << 
+		"error parsing command line options.\n" <<
+		"Try 'recipe2 --help' for valid options." <<
+		std::endl;
+		
 		exit(1);
 	}
 	
