@@ -28,3 +28,4 @@
    or link to and include ICU binaries for each platform in my package). 
    I switched to header-only utfcpp https://github.com/nemtrif/utfcpp, because it 
    is the least complex component that meets my requirements. 
+ * Iterators incredibly handy. Especially for doing a ton of work in one line of code.
