@@ -12,10 +12,15 @@ public:
 
 	void saveInventorySequence(std::string storeName, std::string path);
 
-
 private:
 	//takes doubles as the key values and string as the value type
 	//This datamember represents a sequence of known items in the store along 
 	//the human shopper's fastest/preferred route
 	std::multimap< double, std::string > inventorySequence;
+
+	//helper function for checking if a file contains valid utf8 text
+	//from these examples:
+	//https://github.com/nemtrif/utfcpp
+	//iterators are amazing!
+	bool valid_utf8_file(std::ifstream *filePtr);
 };

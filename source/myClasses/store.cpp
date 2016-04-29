@@ -90,6 +90,25 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//found here:
 	//https://github.com/nemtrif/utfcpp
 
+	//for each file in the inputFileVector
+	for (size_t i = 0; i < inputFileVector.size(); ++i)
+	{
+		//separating this into it's own line for
+		//readabilites sake
+		//copy pointer to ifstream into it's own variable
+		std::ifstream *filePtr = inputFileVector.at(i);
+		//if file is not valid utf8
+		if (!valid_utf8_file(filePtr))
+		{
+			std::cout << "Error file: " << fileVector.at(i) << "\n" <<
+				"is not valid UTF-8. " << "Please input only UTF-8 valid files." << std::endl;
+			exit(1);
+		}
+	}
+	std::cout << "\nAll files are valid UTF-8. Continuing.\n";
+	
+	//now that all the files are UTF-8 encoded, I can move onto parsing the csv format
+
 
 	//<RESUME>
 	//
@@ -120,4 +139,21 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 void Store::saveInventorySequence(std::string storeName, std::string path)
 {
 
+}
+
+bool Store::valid_utf8_file(std::ifstream *filePtr)
+{
+	//if file not open
+	if (!(*filePtr))
+	{
+		std::cout << "\nError file is not open in UTF-8 checker\n";
+		return false;
+	}
+
+	//iterate through the file buffer without copying into
+	//memory first
+	std::istreambuf_iterator<char> it((*filePtr).rdbuf());
+	std::istreambuf_iterator<char> eos;
+
+	return utf8::is_valid(it, eos);
 }
