@@ -24,9 +24,15 @@
     <ClCompile Include="documentation\cxxoptsExample.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\myClasses\ItemOrderParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\myClasses\store.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\myClasses\ItemOrderParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

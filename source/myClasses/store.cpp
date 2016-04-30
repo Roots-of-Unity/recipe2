@@ -182,7 +182,21 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 
 	//the following is adapted from these examples:
 	//https://github.com/ben-strasser/fast-cpp-csv-parser
-	
+	//^Edit: It turns out that this uses so much new ~~c++11~~, (lol, it's actually uses
+	//C++14 threads woops:
+	//https://www.reddit.com/r/cpp/comments/3lrsbt/whats_your_go_to_modern_c_csv_reader/cv95b3u
+	//that it exposes
+	//bugs in mingw. Visual Studio won't compile it of course. So while it may work on
+	//*nix OS's with a nice gcc implementation: I have to pitch it for cross platform reasons,
+	//Until windows gets a fully compliant ~~c++11~~ c++14 compiler.
+	//So I lost some time debugging this issue, but no worries. I pick the following as my
+	//next library to try out:
+
+	//I'm just rolling my own custom file parser. I'm making it the minimum component that can possibly get
+	//the job done. Also, CSV has no formal standard (I learned a ton from the entire thread):
+	//https://www.reddit.com/r/cpp/comments/3lrsbt/whats_your_go_to_modern_c_csv_reader/cv8wwuh
+	//I shall call it ItemOrderParser
+
 	//4 columns in the style I want my csv files to be in.
 	//This standard is described in the /documentation directory of
 	//this project

@@ -119,10 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="documentation\cxxoptsExample.cpp" />
+    <ClCompile Include="source\myClasses\ItemOrderParser.cpp" />
     <ClCompile Include="source\myClasses\store.cpp" />
     <ClCompile Include="source\recipe2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\myClasses\ItemOrderParser.h" />
     <ClInclude Include="source\myClasses\store.h" />
   </ItemGroup>
   <ItemGroup>
