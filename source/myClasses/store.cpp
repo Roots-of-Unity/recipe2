@@ -9,6 +9,7 @@
 #include "../libraries/utfcpp-master/source/utf8.h" //for utf8 validator. requires cpp
 //#include "../libraries/fast-cpp-csv-parser-master/csv.h" //for csv parsing abilities. requires c++14 WOOPS
 #include "ItemOrderParser.h"
+#include <cstdlib>//for exit(0)
 
 
 //pass the file vector by reference to avoid copying it.
@@ -149,7 +150,7 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 
 		}
 
-		exit(1);
+		std::exit(1);
 	}
 	
 	//for each file in the inputFileVector
@@ -181,7 +182,7 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 
 			}
 
-			exit(1);
+			std::exit(1);
 		}//end if
 	}
 	std::cout << "\nAll files are valid UTF-8. Continuing.\n";
