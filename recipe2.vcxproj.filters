@@ -21,9 +21,6 @@
     <ClCompile Include="source\myClasses\store.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="documentation\cxxoptsExample.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\myClasses\ItemOrderParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

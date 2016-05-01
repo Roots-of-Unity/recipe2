@@ -1,3 +1,6 @@
+// Copyright (c) 2016 Jace Thompson
+// Please see LICENSE for license or visit https://github.com/Roots-of-Unity/recipe2
+
 //include guard
 #ifndef STORE_H
 #define STORE_H

@@ -1,10 +1,13 @@
+// Copyright (c) 2016 Jace Thompson
+// Please see LICENSE for license or visit https://github.com/Roots-of-Unity/recipe2
+
 #include "store.h"
 #include <vector>
 #include <fstream> //for ifstream object
 #include <iostream>
 #include <string>
 #include "../libraries/utfcpp-master/source/utf8.h" //for utf8 validator. requires cpp
-#include "../libraries/fast-cpp-csv-parser-master/csv.h" //for csv parsing abilities. requires c
+//#include "../libraries/fast-cpp-csv-parser-master/csv.h" //for csv parsing abilities. requires c
 
 
 //pass the file vector by reference to avoid copying it.
@@ -197,6 +200,8 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//https://www.reddit.com/r/cpp/comments/3lrsbt/whats_your_go_to_modern_c_csv_reader/cv8wwuh
 	//I shall call it ItemOrderParser
 
+	//Scrap code:
+	/*
 	//4 columns in the style I want my csv files to be in.
 	//This standard is described in the /documentation directory of
 	//this project
@@ -229,7 +234,7 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 			//</DEBUG>
 		}
 	}
-
+*/ //end of scrap code
 
 
 	///////////////////////////////////////
@@ -255,6 +260,12 @@ void Store::saveInventorySequence(std::string storeName, std::string path)
 
 }
 
+
+
+//helper function for checking if a file contains valid utf8 text
+//from these examples:
+//https://github.com/nemtrif/utfcpp
+//iterators are amazing!
 bool Store::valid_utf8_file(std::ifstream *filePtr)
 {
 	//if file not open

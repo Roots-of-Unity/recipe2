@@ -33,7 +33,7 @@
    git add .
    git commit -m "my message"
    git push 
- * There's such a thing as parsing expression grammer : https://en.wikipedia.org/wiki/Parsing_expression_grammar
+ * There's such a thing as: parsing expression grammer: https://en.wikipedia.org/wiki/Parsing_expression_grammar
    I found it while researching ways to parse files. I put it sort of on par with regular expressions.
    Here's a cpp implementation of parsing expression grammar: https://github.com/ColinH/PEGTL
 

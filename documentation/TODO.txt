@@ -1,5 +1,5 @@
-* finish project documentation. Write it like a wikipedia article: with sections.
-* add MIT license to my files using a script
-* remember to delete() the objects assigned by new in store::addtoInventorySequence()
+* < >finish project documentation. Write it like a wikipedia article: with sections.
+* <x>add MIT license to my files using a script 
+* <x>remember to delete() the objects assigned by new in store::addtoInventorySequence()
   Perhaps: place that task in the destructor of the class? or in the end of the function?
-* stuck figuring out unicode and ICU
+* <x>stuck figuring out unicode and ICU... stuck no longer!

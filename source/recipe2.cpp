@@ -1,5 +1,5 @@
-//My Copyright Notice: Jace Thompson
-
+// Copyright (c) 2016 Jace Thompson
+// Please see LICENSE for license or visit https://github.com/Roots-of-Unity/recipe2
 
 #include <iostream>
 #include "./myClasses/store.h" //that's store: as in the place where you buy things
