@@ -17,7 +17,7 @@ public:
 	//function that reads a row and updates the class's datamembers to what is in the row
 	//returns false when the end of file has been reached.
 	//This way while(csv.read_row()) works as intended.
-	bool read_row();
+	void read_row();
 
 private:
 	//ptr to the ifstream

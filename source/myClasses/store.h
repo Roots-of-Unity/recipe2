@@ -19,6 +19,8 @@ public:
 
 	void saveInventorySequence(std::string storeName, std::string path);
 
+	void printInventorySequence();
+
 private:
 	//takes doubles as the key values and string as the value type
 	//This datamember represents a sequence of known items in the store along 

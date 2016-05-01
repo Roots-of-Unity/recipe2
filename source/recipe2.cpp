@@ -12,9 +12,10 @@ int main(int argc, char* argv[])
 {
 	//This variable stores the list of files from what the user input into the commandline.
 	//An example fileVector might be: { thisIngredientList.txt, thatIngredientList.txt, ingredientList }
-	//This variable gets used later in the program, after the following 
-	//try block (which is where the library cxxopts) finishes parsing and doing
+	//This variable, in the future, will be used after the following 
+	//try-catch block (which is where the library cxxopts) finishes parsing and doing
 	//some of the required validations on the user's input.
+	//So it's important that it's available outside the try block's scope
 	std::vector< std::string > fileVector;
 
 	//this try block catches errors related to the library I'm using for command line parameters: cxxopts
@@ -70,7 +71,7 @@ int main(int argc, char* argv[])
 		//<DEBUG>
 		if (myCommandlineOptions.count("shoppingList"))
 		{
-			std::cout << "shoppingList is present.\n";
+			std::cout << "Debug: shoppingList is present.\n";
 		}
 		
 		//<DEBUG>
@@ -93,13 +94,24 @@ int main(int argc, char* argv[])
 			//store the fileVector for use later use in the program
 			fileVector = myCommandlineOptions["file"].as<std::vector<std::string>>();
 		}
+
+		if (myCommandlineOptions.count("shoppingList"))
+		{
+			//std::cout << "Program made it this far.\n";
+			Store myStore;
+
+			//fileVector is from the "file" commmand line parameter of the program.
+			myStore.addtoInventorySequence(fileVector);
+
+			//print the newly ordered shopping list
+		}
 	}
 	//catches errors relating to command line parameters
-	catch (const cxxopts::OptionException& e)
+	catch (const cxxopts::OptionException& /*e*/)
 	{
 		//cxxopt's default error string below. I don't like it
-		//Because it requires ICU (a unicode library) to output
-		//Unicode characters which is a task delegated to OS's
+		//Because it requires ICU (a unicode library) to guarantee that outputted
+		//Unicode characters display correctly which is a task delegated to OS's
 		//std::cout << "error parsing options: " << e.what() << std::endl;
 		//So I'm replacing ^ with my own help string
 		std::cout << 
@@ -110,11 +122,5 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 	
-	//<DEBUG> the Jace Thompson proving grounds below:
-	Store myStore;
-	
-	//fileVector is from the "file" commmand line parameter of the program.
-	myStore.addtoInventorySequence(fileVector);
-
 	return 0;
 }//end of main

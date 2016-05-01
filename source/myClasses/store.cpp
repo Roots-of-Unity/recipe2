@@ -7,7 +7,8 @@
 #include <iostream>
 #include <string>
 #include "../libraries/utfcpp-master/source/utf8.h" //for utf8 validator. requires cpp
-//#include "../libraries/fast-cpp-csv-parser-master/csv.h" //for csv parsing abilities. requires c
+//#include "../libraries/fast-cpp-csv-parser-master/csv.h" //for csv parsing abilities. requires c++14 WOOPS
+#include "ItemOrderParser.h"
 
 
 //pass the file vector by reference to avoid copying it.
@@ -128,6 +129,29 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//found here:
 	//https://github.com/nemtrif/utfcpp
 
+	if (inputFileVector.size() == 0)
+	{
+		std::cout << "Error: no files inputted. Try 'recipe2 --help' for help." << std::endl;
+		
+		///////////////////////////////////////
+		//Clean up dynamically allocated memory
+		///////////////////////////////////////
+		//<DEBUG> deallocate memory from the inputFileVector
+		//pass by value here, because I'm just copying pointers. This is the same as what passing by reference does. It just
+		//copies address locations. If I did: auto& inputFileStreamPtr I'd be passing a reference to a pointer which is weird.
+		for (auto inputFileStreamPtr : inputFileVector)
+		{
+			//delete calls the destructor of the object that the pointer points to:
+			delete inputFileStreamPtr;
+			//Deitel page 451. Set the ptr to nullptr immediate after you called delete on it.
+			//This prevents undefied behavior if you were to mistakenly call delete on the pointer again.
+			inputFileStreamPtr = nullptr;
+
+		}
+
+		exit(1);
+	}
+	
 	//for each file in the inputFileVector
 	for (size_t i = 0; i < inputFileVector.size(); ++i)
 	{
@@ -162,7 +186,17 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	}
 	std::cout << "\nAll files are valid UTF-8. Continuing.\n";
 	
-	//now that all the files are UTF-8 encoded, I can move onto parsing the csv format
+	//now that all the files are UTF-8 encoded, I can move onto parsing the csv format:
+	
+	///////////////////////////////////////
+	//Parse ordered shopping list format 
+	//Described in documentation directory
+	///////////////////////////////////////
+
+	//1st failed attempt to parse csv:
+	
+	//begin scrap code:
+	/*
 
 	//Here, I'm using the fast cpp cvs parser found here:
 	//https://github.com/ben-strasser/fast-cpp-csv-parser
@@ -175,7 +209,6 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//Then, I just pass the names of the files that have been validated
 	//and are good to go.
 
-	//<RESUME>
 	//
 	//Feed the validated files into the map 
 	//Stuff is going to collide here if multiple files fed
@@ -200,8 +233,7 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//https://www.reddit.com/r/cpp/comments/3lrsbt/whats_your_go_to_modern_c_csv_reader/cv8wwuh
 	//I shall call it ItemOrderParser
 
-	//Scrap code:
-	/*
+
 	//4 columns in the style I want my csv files to be in.
 	//This standard is described in the /documentation directory of
 	//this project
@@ -234,7 +266,30 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 			//</DEBUG>
 		}
 	}
-*/ //end of scrap code
+    */ //end of scrap code
+
+	//Attempt 2 at parsing csv input:
+	//
+	//Copy paste from above section:
+	//I'm just rolling my own custom file parser. I'm making it the minimum component that can possibly get
+	//the job done. Also, CSV has no formal standard (I learned a ton from the entire thread):
+	//https://www.reddit.com/r/cpp/comments/3lrsbt/whats_your_go_to_modern_c_csv_reader/cv8wwuh
+	//I shall call it ItemOrderParser...Here I go again:
+
+	//now that all the files are UTF-8 encoded, I can move onto parsing the csv format:
+
+	////////////////////////////////////////////////////////
+	//Parse ordered shopping list format 
+	//Described in documentation directory
+	//And load the data into the inventory sequence multimap
+	////////////////////////////////////////////////////////
+
+	//for each ifstreamPtr in the inputFileVector
+	for (auto ifstreamPtr : inputFileVector)
+	{
+		ItemOrderParser csv(ifstreamPtr);
+		csv.read_row();
+	}
 
 
 	///////////////////////////////////////
@@ -250,7 +305,7 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 		//Deitel page 451. Set the ptr to nullptr immediate after you called delete on it.
 		//This prevents undefied behavior if you were to mistakenly call delete on the pointer again.
 		inputFileStreamPtr = nullptr;
-
+		
 	}
 	return (*this);
 }
@@ -263,7 +318,7 @@ void Store::saveInventorySequence(std::string storeName, std::string path)
 
 
 //helper function for checking if a file contains valid utf8 text
-//from these examples:
+//Adapted from these examples:
 //https://github.com/nemtrif/utfcpp
 //iterators are amazing!
 bool Store::valid_utf8_file(std::ifstream *filePtr)
@@ -275,6 +330,7 @@ bool Store::valid_utf8_file(std::ifstream *filePtr)
 		return false;
 	}
 
+	//My favorite 3 lines of code in the entire project:
 	//iterate through the file buffer without copying into
 	//memory first
 	std::istreambuf_iterator<char> it((*filePtr).rdbuf());
