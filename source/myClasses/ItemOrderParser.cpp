@@ -6,10 +6,12 @@
 #include <string>
 #include <vector>
 #include "../libraries/utfcpp-master/source/utf8.h"
+#include <cstdlib>
 
-//constructor uses an initializer list for class' data members
-ItemOrderParser::ItemOrderParser(std::ifstream *ptrToFileStream)
-	: filePtr(ptrToFileStream)
+//constructor uses an initializer list to
+//intialize data member fileName with argument f
+ItemOrderParser::ItemOrderParser(std::string f)
+	: fileName(f)
 {
 	
 }
@@ -43,16 +45,23 @@ void ItemOrderParser::read_row()
 	}
 	*/
 	// Open the test file (contains UTF-8 encoded text)
+
+	//open the ifstream
+	//std::ios::in marks it for read only
+	std::ifstream myFile(fileName, std::ios::in);
 	
-	if (!(*filePtr).is_open())
+	if (!myFile.is_open())
 	{
-		std::cout << "Could not open " << std::endl;
+		std::cout << "Could not open " << fileName;
+		std::exit(1);
 	}
 	
-	
+	//ok I just spent too much time figuring out why passing by pointer to getline doesn't work in this case.
+	//I believe that going out of scope nukes the pointers in function scope. So now that I've figured
+	//that out. Let's rewrite this section!
 	unsigned line_count = 1;
 	std::string line;
-	while (std::getline((*filePtr), line))
+	while (std::getline(myFile, line))
 	{
 		// check for invalid utf-8 (for a simple yes/no check, there is also utf8::is_valid function)
 		std::string::iterator end_it = utf8::find_invalid(line.begin(), line.end());
@@ -78,8 +87,5 @@ void ItemOrderParser::read_row()
 			std::cout << "Error in UTF-16 conversion at line: " << line_count << "\n";
 
 		line_count++;
-		std::cout << "Cool1.\n";
 	}
-	
-	std::cout << "Cool.\n";
 }

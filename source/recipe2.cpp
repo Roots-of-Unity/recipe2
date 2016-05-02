@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include "./myClasses/store.h" //that's store: as in the place where you buy things
-
 //let's me parse input fed from the commandline easily. see rational for use in
 //"./documentation/parseInput.txt"
 #include "./libraries/cxxopts-master/src/cxxopts.hpp"
 
 int main(int argc, char* argv[])
 {
+	//for visual studio command line debugging with command line arguments:
+
+	std::cin.get();
 	//This variable stores the list of files from what the user input into the commandline.
 	//An example fileVector might be: { thisIngredientList.txt, thatIngredientList.txt, ingredientList }
 	//This variable, in the future, will be used after the following 

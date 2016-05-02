@@ -285,10 +285,10 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//And load the data into the inventory sequence multimap
 	////////////////////////////////////////////////////////
 
-	//for each ifstreamPtr in the inputFileVector
-	for (auto ifstreamPtr : inputFileVector)
+	//for each ifstream in the inputFileVector
+	for (auto file : fileVector)
 	{
-		ItemOrderParser csv(ifstreamPtr);
+		ItemOrderParser csv(file);
 		csv.read_row();
 	}
 

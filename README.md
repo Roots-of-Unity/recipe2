@@ -7,6 +7,7 @@ write me.
 #### Proposed Solution ####
 write me.
 #### Shopping List Algorithm ####
+description.
 #### Example Toolchain and Usage ####
 write me.
 ## Documentation

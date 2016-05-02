@@ -12,7 +12,7 @@ class ItemOrderParser
 public:
 	//takes an ifstream as it's constructor
 	//declared explicit to avoid implicit conversions of the argument
-	explicit ItemOrderParser(std::ifstream *ptrToFileStream);
+	explicit ItemOrderParser(std::string f);
 	
 	//function that reads a row and updates the class's datamembers to what is in the row
 	//returns false when the end of file has been reached.
@@ -20,8 +20,8 @@ public:
 	void read_row();
 
 private:
-	//ptr to the ifstream
-	std::ifstream *filePtr;
+	//string that holds file name
+	std::string fileName;
 	
 	//variables that hold the parsed data
 	double order;
