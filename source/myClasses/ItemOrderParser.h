@@ -5,6 +5,7 @@
 #define ITEMORDERPARSER_H
 #include <fstream>//for ifstream object
 #include <string>
+#include <vector>
 
 class ItemOrderParser
 {
@@ -14,23 +15,29 @@ public:
 	//declared explicit to avoid implicit conversions of the argument
 	explicit ItemOrderParser(std::string f);
 	
-	//function that reads a row and updates the class's datamembers to what is in the row
-	//returns false when the end of file has been reached.
-	//This way while(csv.read_row()) works as intended.
-	void read_row();
+
+	//passing a reference to a private datamember breaks encapsulation, so pass by value
+	std::vector< double >       getSequenceOrderVector();
+
+	//passing a reference to a private datamember breaks encapsulation, so pass by value
+	std::vector < std::string > getItemVector();
+
 
 private:
 	//string that holds file name
 	std::string fileName;
 	
 	//variables that hold the parsed data
-	double order;
+
+	std::vector< double > sequenceOrder;
+	//these 2 I'm leaving unimplemented because they're not necessary for now:
 	std::string quantity;
 	std::string unit;
-	std::string item;
 
-	//variable that holds the unparsed data from getline()
-	std::string myLine;
+	std::vector < std::string > item;
+
+	//function that initializes the class's datamembers to what is in the csv
+	void read_file();
 	
 
 };

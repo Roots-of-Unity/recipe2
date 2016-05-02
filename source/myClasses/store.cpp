@@ -284,12 +284,36 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 	//Described in documentation directory
 	//And load the data into the inventory sequence multimap
 	////////////////////////////////////////////////////////
-
+	std::vector < double >      sequenceOrder;
+	std::vector < std::string > item;
 	//for each ifstream in the inputFileVector
 	for (auto file : fileVector)
 	{
 		ItemOrderParser csv(file);
-		csv.read_row();
+		//local copy of the vector. Once I learn about creating my own iterators
+		//I can make this a lot more efficient
+		sequenceOrder = csv.getSequenceOrderVector();
+		item = csv.getItemVector();
+		
+		//the sequenceOrder and item vectors should be the same size. If not, I've got a problem
+		if (sequenceOrder.size() != item.size())
+		{
+			std::cout << "Error: Size mismatch of sequenceOrder and item vectors\n";
+			std::exit(1);
+			//^so far the compiler seems to be able to generate the clean up of my dynamically allocated stuff.
+			//I wonder if this is just MSVC or if this is standard.
+		}
+
+		
+		for (size_t i = 0; i < sequenceOrder.size(); ++i)
+		{//time to fill up the inventory sequence with pairs
+			
+			(*this).inventorySequence.insert( std::make_pair( sequenceOrder.at(i), item.at(i) ) );
+		}
+		
+
+
+		
 	}
 
 
@@ -314,6 +338,14 @@ Store &Store::addtoInventorySequence(const std::vector<std::string> &fileVector)
 void Store::saveInventorySequence(std::string storeName, std::string path)
 {
 
+}
+
+void Store::printInventorySequence()
+{
+	for (auto inventoryItem : inventorySequence)
+	{
+		std::cout << inventoryItem.first << '\t' << inventoryItem.second << '\n';
+	}
 }
 
 

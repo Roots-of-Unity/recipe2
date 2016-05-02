@@ -9,9 +9,6 @@
 
 int main(int argc, char* argv[])
 {
-	//for visual studio command line debugging with command line arguments:
-
-	std::cin.get();
 	//This variable stores the list of files from what the user input into the commandline.
 	//An example fileVector might be: { thisIngredientList.txt, thatIngredientList.txt, ingredientList }
 	//This variable, in the future, will be used after the following 
@@ -106,6 +103,7 @@ int main(int argc, char* argv[])
 			myStore.addtoInventorySequence(fileVector);
 
 			//print the newly ordered shopping list
+			myStore.printInventorySequence();
 		}
 	}
 	//catches errors relating to command line parameters

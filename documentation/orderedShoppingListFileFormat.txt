@@ -1,6 +1,12 @@
 Ordered Shopping List File Format:
 
-The file is encoded in UTF-8.
+The file is encoded in UTF-8 without BOM and *nix line endings.
 
 Inside the file is a ASCII-comma separated list with fields:
 Sequence Order | Quantity | Unit | Item
+
+
+Sequence Order and Item must be present.
+Quantity and unit can be left blank and delimitted with just a single comma:
+ex:
+101.2,,bread

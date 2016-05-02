@@ -19,6 +19,7 @@ public:
 
 	void saveInventorySequence(std::string storeName, std::string path);
 
+	//prints the inventorySequence multimap datamember
 	void printInventorySequence();
 
 private:
