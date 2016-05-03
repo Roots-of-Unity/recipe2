@@ -104,6 +104,7 @@ And then you can get really meta by running that output.txt through the program 
   - Jeeves
   - ListManager Pro - Ha! the name of this one makes me think of TradeSkillMaster on World of Warcraft or the spreadsheets of Eve: Online.
   - Never Forget Another Item on a List!
+
 ## License ##
 
 <a href="http://www.opensource.org/"><img height="100" align="right" src="http://wiki.opensource.org/bin/download/OSI+Operations/Marketing+%26+Promotional+Collateral/OSI_certified_logo_vector.svg"></a>
