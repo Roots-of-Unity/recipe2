@@ -1,6 +1,23 @@
+
 ## recipe2 ##
 a command line tool for recipes and shopping lists
-#### Introduction ####
+
+#### Table of Contents ####
+<!-- MarkdownTOC autolink=true depth=3 bracket=round -->
+
+- [Overview](#overview)
+- [Description of Problem](#description-of-problem)
+- [Proposed Solution](#proposed-solution)
+- [Shopping List Ordering Algorithm](#shopping-list-ordering-algorithm)
+- [Example Toolchain Scenario](#example-toolchain-scenario)
+- [Next Steps](#next-steps)
+- [License](#license)
+- [Credits and Thanks](#credits-and-thanks)
+- [Contact](#contact)
+
+<!-- /MarkdownTOC -->
+
+#### Overview ####
 why I switched to the store schema idea
 Also, why GRM won't work for every shopping scenario and why more utilities must exist. (think sublists, multiple stores, and mucinex)
 #### Description of Problem ####
@@ -69,8 +86,24 @@ You can save this output by using your OS's redirection operators (Windows docs 
 And then you can get really meta by running that output.txt through the program again. (Only joking, eventually it will be possible, and useful to do that.)
 
 #### Next Steps ####
-#### Future Developments ####
-## Documentation
+write me.
+## License ##
+
+<a href="http://www.opensource.org/"><img height="100" align="right" src="http://wiki.opensource.org/bin/download/OSI+Operations/Marketing+%26+Promotional+Collateral/OSI_certified_logo_vector.svg"></a>
+
+recipe2 is certified [Open Source](http://www.opensource.org/docs/definition.html) software. It may be used for any purpose, including commercial purposes, at absolutely no cost. It is distributed under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.html) reproduced here.
+
+> The MIT License (MIT)
+>
+> Copyright (c) 2016 Jace Thompson
+>
+> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+This site and software is not affiliated with or endorsed by the Open Source Initiative. For questions and suggestions about the recipe2 please contact the author at [jthompson161@ivytech.edu](mailto:jthompson161@ivytech.edu)
 
 ## Credits and Thanks ##
 Playlists  
@@ -78,3 +111,7 @@ recipes
 Professor  
 libraries used and authors  
 additional inspiration on how to layout a github project from:
+
+## Contact ##
+Jace Thompson  
+[jthompson161@ivytech.edu](mailto:jthompson161@ivytech.edu)
