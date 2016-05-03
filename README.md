@@ -18,16 +18,62 @@ a command line tool for recipes and shopping lists
 <!-- /MarkdownTOC -->
 
 #### Overview ####
-why I switched to the store schema idea
-Also, why GRM won't work for every shopping scenario and why more utilities must exist. (think sublists, multiple stores, and mucinex)
+Paper is still the king for shopping lists. I need to develop a computational solution that works with this fact.
+
+A lot of details can be extracted by combining a recipe with other lists. The name of the program is meant to reflect this property (hypothetical examples, run the program recipe2 --help to see current features): recipe2 -shoppingList, recipe2 –nutritionInfo. These returned structures are lists as well and can be further utilized. 
 #### Description of Problem ####
-write me.
+Have you ever gone out to the store and forgotten something on your shopping list due to bad organization? Do you frequently do the shopping for other people, and have to manage multiple shopping lists from multiple persons? Do you meal prep, and find that the thought of compiling the list into the order of the grocery store is annoying? If so, then recipe2 can help you! 
 #### Proposed Solution ####
-write me.
+There's a better way to compile grocery lists, or rather there's a better way for all shopping lists in general: Use the Shopping List Ordering Algorithm (described in the next section). The SLOA works along with the idea that every retail store has an optimal path through the store, and that you, the shopper, have already subconsciously figured out this route. You just need to dump it from your mind and associate it with the items in the store.
+
+In the future, this project might allow you to maintain your lists online, and utilize the "order" of a store (I'll refer to this as a schema from time to time in this document).
+
+Every time you need to generate a list, recipe2 can read the schema of the store (... and eventually download a near perfect schema that others have collectively compiled on the Internet) and associate the order with the items you need to buy again on your list. Then, it prompts you for the potential location of unknown items on your shopping run! (feature not yet implemented)!
+
 #### Shopping List Ordering Algorithm ####
-description.
+
+Frustrated after missing an item while out buying groceries. I came up with a scheme to organize the handwritten lists.
+
+Start with the first item on the list.  
+Mark a letter A next to it.  
+Move to the next item.  
+Ask yourself: Does this item come before/after the other item on this list?   or is it near the other item?  
+If it comes after item A. Mark it B  
+If it comes before item A. Mark it with a smiley face or other arbitrary symbol that isn't in the alphabet.  
+If it is near item A. Mark it with an A as well.  
+
+This system has some shortcomings.
+During the first few weeks of this assignment, I refined this process, and documented any other idea that popped into my head. They're all in this document and scanned in the journal in /documentation/journal.
+
+Here's the thought process that leads to the refined system:  
+I need an ordering system that allows for an arbitrary number of unknown items to be ordered at a later time.
+
+I also need symbols that have a sequence that everyone agrees on. Oh how convenient. Let's switch from letters to decimals. Decimal numbers satisfy both needs.
+
+I also need to be able to use multiple lists from different sources. The star symbol can be used for referencing other lists, just like it is in cpp.
+
+So the new version goes like this:  
+Start with the first (or wherever item) on the list.  
+Mark it with your favorite number.  
+Move to the next item.  
+Ask yourself: Does this item come before/after another item on this list?
+or is it near the other item?  
+If it comes after the first item, mark it with a number that comes after you're selected number.  
+If it comes before the first item, mark it with a number that comes before the first item. Negatives work too!
+If it is near the first item. Mark it with the same number as that item!
+
+Here's the best part:
+
+If you mess up, and you don't see another obscure item on the list that is between say items marked with 101 cheese and 102 soda, then just mark it 101.5 and there you have it. Decimals can go forever like that!
+
+There's one more annoyance. You need to sort the list in order. recipe2 as is, is able to do that for your most common recipes that you keep on the computer. Print off the recipe2 list. Then, you can take your handwritten lists, and whenever you see a insertion point on the generated list: like "hey!" This item belongs in between x and y on my recipe2 list, just mark in between with a star and then what list the other stuff is on, and reuse the same schema of order (in other words the numeric symbols you're using presently for that collection of lists).
+
+In theory, I can store the "order" of a store to cross reference with future shopping lists. I'd know that eggs come before cheese. recipe2 does not have this implemented yet, but my work this session is required to get that feature working in the future.
+
+I can the prompt the user, when a new item is added to a store schema, and question where the item belongs in relation to the other items. This is perhaps best done on a mobile device with a touch screen. Later sections expand on this more.
+
 #### Example Toolchain Scenario ####
-Example: I want to prepare a weeks worth of freezer meals for my family. So I begin by generating a shopping list using [Gourmet Recipe Manager](https://github.com/thinkle/gourmet). I want to make one of every dish in my database and 2 slow cooker green bean sides:
+Example: I want to prepare a weeks' worth of freezer meals for my family. So I begin by generating a shopping list using [Gourmet Recipe Manager](https://github.com/thinkle/gourmet). I want to make one of every dish in my database and 2 slow cooker green bean sides:
 
 ![](http://i.imgur.com/vnxz9eB.png)
 
@@ -39,8 +85,7 @@ and format it slightly and print it: (future developments might include using Go
 
 ![](http://i.imgur.com/cy8Tnv1.jpg)
 
-Now that the list is printed firmly onto the original computational device: paper; I can proceed and order it according to the Shopping List Ordering Algorithm described in detail on the wiki. **PUT A LINK HERE**.
-
+Now that the list is printed firmly onto the original computational device: paper; I can proceed and order it according to the Shopping List Ordering Algorithm described in detail in the self-named section.
 ![](http://i.imgur.com/t9PFZVz.jpg)
 
 Now, while that list is now "ordered" (future developments include a mobile app to perform this ordering. It's easier graphically and with touch.) in the sense that I've extracted the information that my head knows about 86th Street Costco inventory sequence, it won't be helping anyone in its present form. The list needs to be organized from least to greatest according to the penciled in sequence numbers.
@@ -57,13 +102,13 @@ Then I visually parse the hand-sequenced shopping list into the spreadsheet. Thi
 
 Now, the magic can happen! Observers may note that You can sort the spreadsheet and generate an ordered list, however, it would be challenging to store an overall "schema" about a particular shopping-store using this method. My project takes the first steps into fully implementing store  sequence schemas.
 
-Next, export the spreadsheet as a a UTF-8 encoded, comma separated values file (*.csv):
+Next, export the spreadsheet as an UTF-8 encoded, comma separated values file (*.csv):
 
 ![](http://i.imgur.com/joN7CSD.png)
 
 For added compatibility (un-necessary on the system I tested with): Use a full-featured text editor (like Notepad++ on Windows) to make sure that the file is UTF-8 without BOM (That's byte order mark. It denotes which UTF encoding the file is in. There are several UTF encodings. The BOM could potentially cause issues.) And make sure that the line ending EOL character matches the target system. I tested with both and the project ran fine.
 
-Next, put your single or multiple shopping list files... (that are ordered as a single sequence. For example: multiple sequences through a store would be lists you made for different trips to the store on different days. Taken together, these lists would not be a single sequence. Ordering these into one schema about a store: say 86th Street Costco is where I have an algorithm developed **SEE WIKI LINK HERE**, and will be implemented in later sessions. The part I coded for this session will be necessary to implement this further down the road.) 
+Next, put your single or multiple shopping list files... (that are ordered as a single sequence. For example: multiple sequences through a store would be lists you made for different trips to the store on different days. Taken together, these lists would not be a single sequence. Ordering these into one schema about a store: say 86th Street Costco is where I have an algorithm developed: see the Shopping List Ordering Algorithm section, and will be implemented in later sessions. The part I coded for this session will be necessary to implement this further down the road.) 
 
 An example of multiple lists that are put in the same sequence using the power of decimal numbers. This grocery list is an old relic that was ran with a typical color coding method: 
 
@@ -86,14 +131,22 @@ You can save this output by using your OS's redirection operators (Windows docs 
 And then you can get really meta by running that output.txt through the program again. (Only joking, eventually it will be possible, and useful to do that.)
 
 #### Next Steps ####
+- Finish unimplemented features described in problems section.
+- Implement a "spacing" function to spread out the decimal numbers to larger whole numbers. This way you don't get things like 101.9993. This gets mapped to say 5000 (the only thing that matters is sequence, face value is irrelevant.)
 - GUI Auto Shopper App: It collaboratively maintains a giant database of store item schemas. This is how I'd start monetizing. When I actually became a company, I'd use my purchasing power to snuggle up with retailers for their actual parsable catalog, and make more money datamining.
   - For now, the grocery shopping app is a PnP (pen and paper... the original computation device) application
 - CLI "Store the Store" Schema Component: Assumes correct ordering of a store. The correctness will be determined by users via some algorithm. This is what I have partially implemented. This will go onto be a backend to the different facets of the project.
 - A smartphone/GUI/custom hardware component that uses OCR to read receipts after a shopping run to see what you actually acquired and from what store. This is one way to weed out inaccurate data and unknown items in stores.
 - Patent on an "ordering system that allows for an arbitrary number of unknown items to be ordered at a later time." Woops. There goes that one.
 - Add a sharing component of lists for recipes and life in general.
-- A GUI/smartphone/touch "editor" for managing stores and their items. Example drawing:  
-**DRAW ME**
+- A GUI/smartphone/touch "editor" for managing stores and their items. Example UI drawings:  
+
+For touch/mobile
+![](http://i.imgur.com/OuSbsIx.jpg)
+
+For tablet/desktop_browser
+![](http://i.imgur.com/iIfRaAj.jpg)
+
 - Alternate Names:
   - Shopping Tool
   - List Tool
@@ -135,6 +188,10 @@ My classmates this semester:
 - Janna
 
 Sample Recipes in *.txt form found [here](https://gist.github.com/Roots-of-Unity/5fbed865347c9366f61433f9fbdad6c0). As Gourmet XML file [here](https://gist.github.com/Roots-of-Unity/0c429ae012ace8e527112c9b7e2f3d9a). I give them my seal of approval. 
+
+Software of Note:
+
+- [Gourmet Recipe Manager](https://github.com/thinkle/gourmet) by Thomas Hinkle. I used this in the examples above. 
 
 Playlists:  
 
