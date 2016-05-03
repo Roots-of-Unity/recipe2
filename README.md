@@ -86,7 +86,24 @@ You can save this output by using your OS's redirection operators (Windows docs 
 And then you can get really meta by running that output.txt through the program again. (Only joking, eventually it will be possible, and useful to do that.)
 
 #### Next Steps ####
-write me.
+- GUI Auto Shopper App: It collaboratively maintains a giant database of store item schemas. This is how I'd start monetizing. When I actually became a company, I'd use my purchasing power to snuggle up with retailers for their actual parsable catalog, and make more money datamining.
+  - For now, the grocery shopping app is a PnP (pen and paper... the original computation device) application
+- CLI "Store the Store" Schema Component: Assumes correct ordering of a store. The correctness will be determined by users via some algorithm. This is what I have partially implemented. This will go onto be a backend to the different facets of the project.
+- A smartphone/GUI/custom hardware component that uses OCR to read receipts after a shopping run to see what you actually acquired and from what store. This is one way to weed out inaccurate data and unknown items in stores.
+- Patent on an "ordering system that allows for an arbitrary number of unknown items to be ordered at a later time." Woops. There goes that one.
+- Add a sharing component of lists for recipes and life in general.
+- A GUI/smartphone/touch "editor" for managing stores and their items. Example drawing:  
+**DRAW ME**
+- Alternate Names:
+  - Shopping Tool
+  - List Tool
+  - Catalog Tool
+  - Personal Purchasing Tool: The Future is Promising (R)
+  - Buy Me This
+  - AutoShopper
+  - Jeeves
+  - ListManager Pro - Ha! the name of this one makes me think of TradeSkillMaster on World of Warcraft or the spreadsheets of Eve: Online.
+  - Never Forget Another Item on a List!
 ## License ##
 
 <a href="http://www.opensource.org/"><img height="100" align="right" src="http://wiki.opensource.org/bin/download/OSI+Operations/Marketing+%26+Promotional+Collateral/OSI_certified_logo_vector.svg"></a>
@@ -104,11 +121,40 @@ recipe2 is certified [Open Source](http://www.opensource.org/docs/definition.htm
 This site and software is not affiliated with or endorsed by the Open Source Initiative. For questions and suggestions about the recipe2 please contact the author at [jthompson161@ivytech.edu](mailto:jthompson161@ivytech.edu)
 
 ## Credits and Thanks ##
-Playlists  
-recipes  
-Professor  
-libraries used and authors  
-additional inspiration on how to layout a github project from:
+Dr. Diana Nixon - my CSCI 102 professor at Ivy Tech Community College - for the awesome semester, and for teaching us C++11 so well.  
+
+My classmates this semester:
+
+- Yoosuk
+- Ben
+- Xuyang
+- Kevin
+- Jay
+- Bard
+- Janna
+
+Sample Recipes in *.txt form found [here](https://gist.github.com/Roots-of-Unity/5fbed865347c9366f61433f9fbdad6c0). As Gourmet XML file [here](https://gist.github.com/Roots-of-Unity/0c429ae012ace8e527112c9b7e2f3d9a). I give them my seal of approval. 
+
+Playlists:  
+
+- Battlestar Galactica Season 4 Soundtrack: [link](https://youtu.be/NY3gY48pxjA?list=PL95092E55EDA7E10D)  
+  - Lots of coding was done to track 1 performed by Alessandro Juliani.
+    - Composed by Bear McCreary
+- The Martian OST: [link](https://youtu.be/W4u8-dS7Etg?list=PLFyzg2g9ronE9z6WTG-vq3sYXFeJzSz3_) 
+  - by Harry Gregson-Williams
+ 
+
+Library Credits:  
+*Licenses are located in libraries directory of this project.*
+ 
+I made use of:  
+
+- [cxxopts](https://github.com/jarro2783/cxxopts) by Jarryd Beck for parsing command line arguments.
+- [UTF8-CPP](https://github.com/nemtrif/utfcpp) by Nemanja Trifunovic for validating UTF-8.
+
+Inspiration on how to layout a README.md from these immaculate projects:  
+- [https://github.com/homebysix/recipe-robot](https://github.com/homebysix/recipe-robot)  
+- [https://github.com/ColinH/PEGTL](https://github.com/ColinH/PEGTL)
 
 ## Contact ##
 Jace Thompson  
